@@ -9,15 +9,25 @@
        http://www.springframework.org/schema/webflow-config 
         http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">
 
-	<!-- database properties DataSource -->
+<!-- database properties DataSource 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.h2.Driver" />
-	<!--  <property name="url" value="jdbc:h2:tcp://localhost/~/ecommerce" /> -->
+	    <property name="url" value="jdbc:h2:tcp://localhost/~/ecommerce" />
 		<property name="url" value="jdbc:h2:mem:ecommerce" />
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
+    -->
+    
+    <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://rpmysql.ctbzchuwciza.us-east-1.rds.amazonaws.com:3306/ecommerce" />
+		<property name="username" value="admin" />
+		<property name="password" value="cool8calm" />
+	</bean>
+	
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -26,7 +36,8 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<!--  <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 
 				<!-- hibernate mapping to database automatically -->
 				<!-- when we use create-drop instead of update the table is created automatically 

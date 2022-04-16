@@ -70,7 +70,7 @@ public class CartItemController {
 
 	@RequestMapping("/cart/add/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void addCartItem(@PathVariable(value = "productId") String productId) {
+	public void addCartItem(@PathVariable(value = "productId") Long productId) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String emailId = user.getUsername();
 		Customer customer = customerService.getCustomerByemailId(emailId);
@@ -98,13 +98,13 @@ public class CartItemController {
 
 	@RequestMapping("/cart/removeCartItem/{cartItemId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void removeCartItem(@PathVariable(value = "cartItemId") String cartItemId) {
+	public void removeCartItem(@PathVariable(value = "cartItemId") Long cartItemId) {
 		cartItemService.removeCartItem(cartItemId);
 	}
 
 	@RequestMapping("/cart/removeAllItems/{cartId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void removeAllCartItems(@PathVariable(value = "cartId") String cartId) {
+	public void removeAllCartItems(@PathVariable(value = "cartId") Long cartId) {
 		Cart cart = cartService.getCartByCartId(cartId);
 		cartItemService.removeAllCartItems(cart);
 	}

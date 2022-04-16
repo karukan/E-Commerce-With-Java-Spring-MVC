@@ -22,7 +22,7 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String customerId;
+	private Long customerId;
 	private String firstName;
 	private String lastName;
 	private String customerPhone;
@@ -60,11 +60,11 @@ public class Customer implements Serializable {
 		this.cart = cart;
 	}
 
-	public String getCustomerId() {
+	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(String custmerId) {
+	public void setCustomerId(Long custmerId) {
 		this.customerId = custmerId;
 	}
 
